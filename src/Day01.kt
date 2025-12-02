@@ -1,6 +1,15 @@
+import kotlin.math.absoluteValue
+
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        return input
+            .scan(initial = 50) { result: Int, item: String ->
+                val parsedResult: Int = item.substring(1).toInt() * if (item[0] == 'L') -1 else 1
+                (result + parsedResult).mod(100).let {
+                    if (it < 0) it + 100 else it
+                }
+            }
+            .count { it == 0 }
     }
 
     fun part2(input: List<String>): Int {
@@ -8,14 +17,14 @@ fun main() {
     }
 
     // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
+//    check(part1(listOf("test_input")) == 1)
 
     // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+//    val testInput = readInput("Day01_test")
+//    check(part1(testInput) == 1)
 
     // Read the input from the `src/Day01.txt` file.
     val input = readInput("Day01")
     part1(input).println()
-    part2(input).println()
+//    part2(input).println()
 }
