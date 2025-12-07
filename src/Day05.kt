@@ -47,12 +47,4 @@ fun main() {
     part2(input).println()
 }
 
-fun List<LongRange>.previousRanges(index: Int): List<LongRange> {
-    return if (index == 0) {
-        emptyList()
-    } else {
-        subList(0, index)
-    }
-}
-
 fun LongRange.countLong() = endInclusive - start + 1
